@@ -2,8 +2,8 @@
 
 ## 概要
 
-このテンプレートは、**scaffoldingツールで自由にプロジェクトを構築した後、Docker で起動する**ことを前提とした構成です。
-`apps/web` と `apps/api` のディレクトリ構成はプロジェクトごとに自由に決められます。
+React + Vite+（web）と Hono（api）のモノレポ構成テンプレートです。
+clone 後に `docker compose up` を実行するだけで開発環境が立ち上がります。
 
 ## 構成
 
@@ -24,41 +24,16 @@ git clone <repository-url>
 cd <repository-name>
 ```
 
-### 2. 各アプリをscaffoldingで作成
-
-```bash
-# React + TypeScript（Vite）
-yarn create vite apps/web -- --template react-ts
-
-# Hono
-yarn create hono apps/api
-```
-
-> **api のリンター・フォーマッターについて:** Vite+ は Vite ベースのプロジェクト向けのため、Hono（api）には恩恵が及びません。api には [Biome](https://biomejs.dev/) などのツールを別途導入することを推奨します。
-
-### 3. 起動
+### 2. 起動
 
 ```bash
 docker compose up
 ```
 
-`yarn install` はコンテナ起動時に自動で実行されます。web は Vite+ の dev サーバー（`vp dev`）で起動します。また、`apps/web/vite.config.ts` にて `server.host: true` の設定が必要です（下記参照）。
+`yarn install` はコンテナ起動時に自動で実行されます。web は Vite+ の dev サーバー（`vp dev`）で起動します。
 
 - web: http://localhost:5173
 - api: http://localhost:8787
-
-### Vite の Docker 向け設定
-
-コンテナ内から外部にアクセスできるよう、`apps/web/vite.config.ts` に以下を追加してください。
-
-```ts
-export default defineConfig({
-  server: {
-    host: true,
-    port: 5173,
-  },
-})
-```
 
 ## ディレクトリ構成
 
@@ -70,7 +45,25 @@ export default defineConfig({
 │   │   └── Dockerfile
 │   └── api/
 │       └── Dockerfile
-└── apps/          # scaffolding で生成（git 管理対象）
-    ├── web/
-    └── api/
+└── apps/
+    ├── web/    # React + TypeScript + Vite+
+    └── api/    # Hono + TypeScript
 ```
+
+## 補足
+
+### Vite+ について
+
+web のビルド・リント・フォーマットには [Vite+](https://viteplus.dev/) を使用しています。
+`docker compose exec web vp check` などでコンテナ内から実行できます。
+
+```bash
+docker compose exec web vp check   # リント + 型チェック
+docker compose exec web vp fmt     # フォーマット
+docker compose exec web vp build   # 本番ビルド
+```
+
+### api のリンター・フォーマッターについて
+
+Vite+ は Vite ベースのプロジェクト向けのため、Hono（api）には恩恵が及びません。
+api には [Biome](https://biomejs.dev/) などのツールを別途導入することを推奨します。
