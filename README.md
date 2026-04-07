@@ -42,7 +42,7 @@ yarn create hono apps/api
 docker compose up
 ```
 
-`yarn install` はコンテナ起動時に自動で実行されます。また、`apps/web/vite.config.ts` にて `server.host: true` の設定が必要です（下記参照）。
+`yarn install` はコンテナ起動時に自動で実行されます。web は Vite+ の dev サーバー（`vp dev`）で起動します。また、`apps/web/vite.config.ts` にて `server.host: true` の設定が必要です（下記参照）。
 
 - web: http://localhost:5173
 - api: http://localhost:8787
