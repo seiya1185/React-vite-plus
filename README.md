@@ -27,18 +27,14 @@ cd <repository-name>
 ### 2. 各アプリをscaffoldingで作成
 
 ```bash
-# Vite+（オプションはプロジェクトに合わせて自由に設定）
-# 詳細: https://viteplus.dev/guide/create
-vp create
+# React + TypeScript（Vite）
+yarn create vite apps/web -- --template react-ts
 
 # Hono
 yarn create hono apps/api
 ```
 
-> **注意:** Vite+ はグローバルインストールが必要です。未インストールの場合は先にセットアップしてください。
-> ```bash
-> curl -fsSL https://vite.plus | bash
-> ```
+> **api のリンター・フォーマッターについて:** Vite+ は Vite ベースのプロジェクト向けのため、Hono（api）には恩恵が及びません。api には [Biome](https://biomejs.dev/) などのツールを別途導入することを推奨します。
 
 ### 3. 起動
 
