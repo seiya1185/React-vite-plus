@@ -8,4 +8,15 @@ export default defineConfig({
     host: true,
     port: 5173,
   },
+
+  // Oxlint の設定
+  lint: {
+    ignorePatterns: ['dist/**'],
+  },
+
+  // Oxfmt の設定
+  fmt: {
+    singleQuote: true,
+    semi: false,
+  },
 })
