@@ -5,8 +5,8 @@ services:
       - ./apps/web:/app
       - /app/node_modules
     ports:
-      - "3000:3000"
-    command: sh -c "bun install && bun dev"
+      - "5173:5173"
+    command: sh -c "yarn install && yarn dev"
 
   api:
     build: docker/api
@@ -15,4 +15,4 @@ services:
       - /app/node_modules
     ports:
       - "8787:8787"
-    command: sh -c "bun install && bun dev"
+    command: sh -c "yarn install && yarn dev"
