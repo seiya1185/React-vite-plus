@@ -1,0 +1,17 @@
+# 依存関係
+node_modules/
+
+# Next.js ビルド成果物
+apps/web/.next/
+apps/web/out/
+
+# Hono / 一般的なビルド成果物
+apps/api/dist/
+
+# 環境変数
+.env
+.env.local
+.env*.local
+
+# OS
+.DS_Store
