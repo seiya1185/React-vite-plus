@@ -12,11 +12,18 @@ export default defineConfig({
   // Oxlint の設定
   lint: {
     ignorePatterns: ['dist/**'],
+    options: {
+      typeAware: true,
+      typeCheck: true,
+    },
   },
 
   // Oxfmt の設定
   fmt: {
+    ignorePatterns: ['dist/**'],
     singleQuote: true,
     semi: false,
+    singleAttributePerLine: true,
+    sortImports: true,
   },
 })
